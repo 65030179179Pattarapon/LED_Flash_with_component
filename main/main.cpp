@@ -23,22 +23,37 @@ void ALL_LED_OFF()
 
 extern "C" void app_main(void)
 {
+    int i = 0;
+    bool forward = true;
     while(1)
     {
-        for(int i = 0; i < 4; ++i)
+        ALL_LED_OFF();
+        leds[i].ON();
+        vTaskDelay(200 / portTICK_PERIOD_MS);
+
+        if(forward)
         {
-            ALL_LED_OFF();
-            leds[i].ON();
-            leds[7 - i].ON();
-            vTaskDelay(200 / portTICK_PERIOD_MS);
+            if(i < 7)
+            {
+                i++;
+            }
+            else
+            {
+                forward = false;
+                i--;
+            }
         }
-        
-        for(int i = 3; i >= 0; --i)
+        else
         {
-            ALL_LED_OFF();
-            leds[i].ON();
-            leds[7 - i].ON();
-            vTaskDelay(200 / portTICK_PERIOD_MS);
+            if(i > 0)
+            {
+                i--;
+            }
+            else
+            {
+                forward = true;
+                i++;
+            }
         }
     }
 }
