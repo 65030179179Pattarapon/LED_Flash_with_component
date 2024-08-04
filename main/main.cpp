@@ -14,14 +14,31 @@ LED led8(23);
 
 LED leds[] = {led1, led2, led3, led4, led5, led6, led7, led8};
 
+void ALL_LED_OFF()
+{
+    for(int i = 0; i < 8; ++i) {
+        leds[i].OFF();
+    }
+}
+
 extern "C" void app_main(void)
 {
-    int i = 0;
     while(1)
-    {        
-        leds[i].ON();
-        vTaskDelay(100/portTICK_PERIOD_MS);
-        leds[i].OFF();
-        if(i++ >= 7) i = 0;
+    {
+        for(int i = 0; i < 4; ++i)
+        {
+            ALL_LED_OFF();
+            leds[i].ON();
+            leds[7 - i].ON();
+            vTaskDelay(200 / portTICK_PERIOD_MS);
+        }
+        
+        for(int i = 3; i >= 0; --i)
+        {
+            ALL_LED_OFF();
+            leds[i].ON();
+            leds[7 - i].ON();
+            vTaskDelay(200 / portTICK_PERIOD_MS);
+        }
     }
 }
