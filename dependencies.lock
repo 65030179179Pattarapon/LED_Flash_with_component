@@ -1,0 +1,16 @@
+dependencies:
+  LED:
+    component_hash: f0b813ad0cc12447bf0ad655b28e4c0726a3bd655b40360a770ef8b750e70e67
+    source:
+      git: https://github.com/65030179179Pattarapon/LED_Test.git
+      path: components/LED
+      type: git
+    version: 8e252cdcfe873768c5cdfe6ec81952dec57982db
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 5.2.2
+manifest_hash: f841eabb2fdf2ec36bd5fcadbeabdd19832a476e674a86a91c928571823477c5
+target: esp32
+version: 1.0.0
